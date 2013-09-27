@@ -1,2 +1,3 @@
-﻿25.09.2013 Начата разработка
-Шифр Излучатель
+This is my first project on GitHub. It's just a simple utility for long-term testing some electronic components.
+It will be working with 6 RS232 measurement devices and LAN controller. If anyone's interested in working with 
+such devices, here you can find some example. 
