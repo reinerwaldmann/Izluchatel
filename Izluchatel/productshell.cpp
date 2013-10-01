@@ -3,12 +3,12 @@
 
 ProductShell::ProductShell(char iDebugLevel, QWidget *parent):
     QWidget(parent),
-    ui(new Ui::ProductShell)
+    ui(new Ui::ProductShell),
+    timer (this)
 {
     ui->setupUi(this);
     debugLevel = iDebugLevel;
-
-
+    connect(&timer, SIGNAL(timeout()), this, SLOT(timeout()));
 }
 
 ProductShell::~ProductShell()
@@ -39,20 +39,16 @@ void ProductShell::writeConsole(QString msg, char type)
         ui->textEditShell->append(tr( " %1 <br> " ).arg(msg)  );
         break;
 
-
-
     }
-
 
 }
 
 
 
-
-
-void ProductShell::timeoutDeviceUnreachable()
+void ProductShell::acceptResultSlot(char slot, char out, char errCode, double result )
 {}
 
+void timeout()
+{
 
-void ProductShell::acceptResultSlot(QString str)
-{}
+}

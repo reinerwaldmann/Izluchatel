@@ -3,13 +3,14 @@
 
 #include <QWidget>
 #include "principalwindow.h"
+#include <QTimer>
 
-#define MSG_ERROR=1
-#define MSG_NEUTRAL=0;
-#define MSG_GOOD=2;
+#define MSG_ERROR 1
+#define MSG_NEUTRAL 0
+#define MSG_GOOD 2
 
-#define DEBUG_N=0;
-#define DEBUG_V=1;
+#define DEBUG_N 0
+#define DEBUG_V 1
 
 
 
@@ -24,7 +25,7 @@ class ProductShell : public QWidget
     Q_OBJECT
     
 public:
-    QTimer timer;
+    QTimer timer; //for testing process
     char debugLevel;
     bool flagWaitingAnswer;  //if we sent smf to the port, and waiting for answer,
     //for result, for example
@@ -38,6 +39,7 @@ public:
     void test (); //begin testing
     void pause(); //pause testing
 
+    void acceptResultSlot (char slot, char out, char errCode, double result );
 
     
 private:
@@ -45,8 +47,7 @@ private:
 
 
 private slots:
-    void acceptResultSlot (QString str);
-    void timeoutDeviceUnreachable ();
+    void  timeout ();
 
 
 
