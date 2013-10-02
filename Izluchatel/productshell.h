@@ -14,6 +14,8 @@
 
 
 
+
+
 namespace Ui {
 class ProductShell;
 }
@@ -30,14 +32,18 @@ public:
     bool flagWaitingAnswer;  //if we sent smf to the port, and waiting for answer,
     //for result, for example
     PrincipalWindow * principal;
+    int number;
+
+    int timeBreak; //counted interval between two switches
+    char stage; //number of an event, that comes 1 2 3 4 5 6
 
 
-
-    explicit ProductShell(char iDebugLevel=0, QWidget *parent = 0);
+    explicit ProductShell(int inumber, PrincipalWindow * iprincipal,  char iDebugLevel=0, QWidget *parent = 0);
     ~ProductShell();
     void writeConsole (QString msg, char type=0);
     void test (); //begin testing
     void pause(); //pause testing
+    void reset(); //reset testing
 
     void acceptResultSlot (char slot, char out, char errCode, double result );
 
@@ -52,6 +58,7 @@ private slots:
 
 
 
+    void on_buttonPause_2_clicked();
 };
 
 #endif // PRODUCTSHELL_H

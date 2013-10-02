@@ -42,6 +42,13 @@
     <widget class="QTextEdit" name="textEditShell"/>
    </item>
    <item>
+    <widget class="QPushButton" name="buttonPause_2">
+     <property name="text">
+      <string>Очистить консоль</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="buttonPause">
      <property name="text">
       <string>PAUSE</string>
