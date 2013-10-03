@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>301</width>
-    <height>442</height>
+    <width>298</width>
+    <height>509</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,6 +39,20 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="labelCyclesPassedLeft">
+     <property name="text">
+      <string>Циклов прошло/осталось:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelTimePassedLeft">
+     <property name="text">
+      <string>Времени прошло/осталось:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTextEdit" name="textEditShell"/>
    </item>
    <item>
@@ -49,9 +63,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="buttonPause">
+    <widget class="QPushButton" name="buttonTest">
      <property name="text">
-      <string>PAUSE</string>
+      <string>Тест</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonReset">
+     <property name="text">
+      <string>Сброс</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonPause_3">
+     <property name="text">
+      <string>Пауза</string>
      </property>
     </widget>
    </item>

@@ -12,8 +12,11 @@ class DeviceManagerIzluchatel : public QObject
 {
     Q_OBJECT
 public:
-    explicit DeviceManagerIzluchatel(QObject *parent = 0);
-    
+    explicit DeviceManagerIzluchatel(PrincipalWindow * iprincipal,  QObject *parent = 0);
+    char measure (char slt, char out); //returns 0 if OK, 1 if device is known to be offline
+
+    PrincipalWindow * principal;
+
 signals:
     
 public slots:
