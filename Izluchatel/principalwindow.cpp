@@ -9,6 +9,9 @@ PrincipalWindow::PrincipalWindow(int iDebugLevel, QWidget *parent):
     debugLevel = iDebugLevel;
     ui->setupUi(this);
     addShell();
+
+    deviceManager = new DeviceManagerIzluchatel(this, this);
+    numCycles=0;
 }
 
 PrincipalWindow::~PrincipalWindow()
@@ -35,6 +38,12 @@ void PrincipalWindow::removeShell()
 
 }
 
+bool PrincipalWindow::validateInputData ()
+{
+    return 0;
+
+}
+
 void PrincipalWindow::on_spinBoxNumProducts_valueChanged(int arg1)
 {
     if (shellList.size()>arg1) removeShell();
@@ -45,7 +54,11 @@ void PrincipalWindow::on_spinBoxNumProducts_valueChanged(int arg1)
 
 void PrincipalWindow::on_pushButtonTest_clicked()
 {
-     QListIterator<ProductShell * > i(shellList);
+    if  (validateInputData()) return; //error in input data
+
+    numCycles = ui->spinBoxNumCycles->value();
+
+    QListIterator<ProductShell * > i(shellList);
     while (i.hasNext())
     i.next()->test();
 

@@ -12,8 +12,9 @@ DeviceManagerIzluchatel::DeviceManagerIzluchatel(PrincipalWindow *iprincipal, QO
 
  char DeviceManagerIzluchatel::measure (char slt, char out) //returns 0 if OK, 1 if device is
  {//makes measurements
+//for debugging purposes
 
-principal->shellList.at(slt)->acceptResult(slt,out,0,30.1);
+principal->shellList.at(slt-1)->acceptResult(slt,out,0,50.1);
 
 
  }

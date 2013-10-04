@@ -13,7 +13,8 @@
 #define DEBUG_V 1
 
 
-
+const int timeToSwitch = 500; //ms
+const int timeToMeasure = 2000; //ms
 
 
 namespace Ui {
@@ -27,7 +28,17 @@ class ProductShell : public QWidget
     Q_OBJECT
     
 public:
+
+
+
+
+
+
     QTimer timer; //for testing process
+
+ //   QTimer testTime; //for indicating time elapsed
+
+
     char debugLevel;
     bool flagWaitingAnswer;  //if we sent smf to the port, and waiting for answer,
     //for result, for example
@@ -55,6 +66,7 @@ public:
     void atFinish(); //fired at finish of testing process
     void pause(); //pause testing
     void reset(); //reset testing
+
 
     void acceptResult (char slot, char out, char errCode, double result );
 

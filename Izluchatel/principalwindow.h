@@ -23,13 +23,22 @@ class PrincipalWindow : public QMainWindow
 public:
     explicit PrincipalWindow(int iDebugLevel, QWidget *parent = 0);
     ~PrincipalWindow();
-    
     QList <ProductShell * > shellList;
+    DeviceManagerIzluchatel * deviceManager;
+
+
+    //data from user interface
+    int numCycles;
+
+    char debugLevel;
+
+
+    bool validateInputData ();
+
 
     void addShell();
     void removeShell();
 
-    char debugLevel;
 
 
 
