@@ -49,8 +49,43 @@ void ProductShell::test()
     }
 
     numCycles = principal->numCycles;
-    //numTime
+
+    numTime =principal->numTime; //IN SECONDS
+
+
     //counting Timebreak
+    timeBreak  = ((numTime*1000/numCycles)-(timeToMeasure*2+timeToSwitch*2))/2;
+/*
+Важный момент - дробные значения будут отсечены по принципу floor на каждом действии деления,
+так как все переменные целого типа. Это, скорее всего, приведёт к тому, что система
+всё же раньше справится с циклами, нежели положено по времени
+и потребуется подержать реле в одном состоянии некоторое время.
+
+*/
+
+    if (timeBreak<minTimeBreak)
+    {
+        writeConsole("Ошибка 2.2 заданного времени не хватит для осуществления заданного числа циклов",MSG_ERROR);
+
+        return;
+    }
+
+    if (debugLevel==DEBUG_V)
+        {
+        writeConsole("Параметры считаны успешно");
+ writeConsole (tr ("Число циклов: %1 <br> Время общее: %2 мин <br> Timebreak=%3 msec").\
+               arg(QString::number(numCycles))\
+               .arg (QString::number (numTime))\
+               .arg (QString::number (timeBreak)));
+
+
+
+        //writeConsole(tr("Timebreak=%1 msec").arg(QString::number(timeBreak)));
+
+        }
+
+
+
     counterCycles=0;
     counterTime=0;
 

@@ -29,6 +29,7 @@ public:
 
     //data from user interface
     int numCycles;
+    unsigned long numTime; //IN SECONDS!
 
     char debugLevel;
 

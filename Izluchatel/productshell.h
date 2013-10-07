@@ -15,7 +15,7 @@
 
 const int timeToSwitch = 500; //ms
 const int timeToMeasure = 2000; //ms
-
+const int minTimeBreak=500; //ms
 
 namespace Ui {
 class ProductShell;
@@ -51,7 +51,7 @@ public:
     int numCycles;
     int counterCycles;
 
-    int numTime;
+    unsigned long  numTime;
     int counterTime;
 
     int remainingTimeHolder; //holds remaining time when testing paused

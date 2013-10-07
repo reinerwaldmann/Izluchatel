@@ -58,6 +58,10 @@ void PrincipalWindow::on_pushButtonTest_clicked()
 
     numCycles = ui->spinBoxNumCycles->value();
 
+    //debugging
+    numTime = ui->spinBoxNumMins->value()*60; //in sec
+    //in production must be value in hours value_in_h*60*60
+
     QListIterator<ProductShell * > i(shellList);
     while (i.hasNext())
     i.next()->test();
