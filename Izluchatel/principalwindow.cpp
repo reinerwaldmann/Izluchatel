@@ -44,6 +44,19 @@ bool PrincipalWindow::validateInputData ()
 
 }
 
+
+int PrincipalWindow::getNumTime()
+{
+return ui->spinBoxNumMins->value()*60;
+}
+
+int PrincipalWindow::getNumCycles()
+{
+return ui->spinBoxNumCycles->value();
+}
+
+
+
 void PrincipalWindow::on_spinBoxNumProducts_valueChanged(int arg1)
 {
     if (shellList.size()>arg1) removeShell();

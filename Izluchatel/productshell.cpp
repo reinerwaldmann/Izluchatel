@@ -5,13 +5,18 @@ ProductShell::ProductShell(int inumber, PrincipalWindow *iprincipal, char iDebug
     QWidget(parent),
     ui(new Ui::ProductShell)
 {
+    testTimer = new QTimer(this);
+    timer=new QTimer(this);
+
 
     principal = iprincipal;
     number=inumber;
     ui->setupUi(this);
 
     debugLevel = iDebugLevel;
-    connect(&timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    connect(testTimer, SIGNAL(timeout()), this, SLOT(timeoutTestTimer()));
+
     ui->labelName->setText(tr("Изделие №%1").arg(QString::number(number)));
 
 
@@ -32,6 +37,8 @@ ProductShell::ProductShell(int inumber, PrincipalWindow *iprincipal, char iDebug
 
 ProductShell::~ProductShell()
 {
+  delete testTimer;
+    delete timer;
     delete ui;
 }
 
@@ -40,7 +47,8 @@ void ProductShell::test()
 {
 
 
-    if (timer.isActive() || pauseFlag)
+
+    if (timer->isActive() || pauseFlag)
     {
         if (debugLevel==DEBUG_V)
         writeConsole("Попытка запуска тестирования, которое уже запущено");
@@ -48,9 +56,9 @@ void ProductShell::test()
         return;
     }
 
-    numCycles = principal->numCycles;
-
-    numTime =principal->numTime; //IN SECONDS
+    numCycles = principal->getNumCycles();
+//2 147 481 523
+    numTime =principal->getNumTime(); //IN SECONDS
 
 
     //counting Timebreak
@@ -96,15 +104,13 @@ void ProductShell::test()
 
 
 
-
-//debugging
-    timeBreak = 3;
-    timer.setSingleShot(1);
-    timer.start(timeBreak); //first time start
+    timer->setSingleShot(1);
+    timer->start(timeBreak); //first time start
     stage = 1;
 
+    testTimer->start(1000);
 
-
+    ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
 
 
 }
@@ -114,20 +120,23 @@ void ProductShell::pause()
 
     if (pauseFlag) //resume
     {
-        timer.start(remainingTimeHolder);
+        timer->start(remainingTimeHolder);
         ui->buttonPause_3->setText("Пауза");
         writeConsole("Тестирование возобновлено");
         pauseFlag=0;
+        testTimer->start(1000);
+
         return;
 
 
     }
 
-    if ( timer.isActive())
+    if ( timer->isActive())
     {
 
-    remainingTimeHolder = timer.remainingTime();
-    timer.stop();
+    testTimer->stop();
+    remainingTimeHolder = timer->remainingTime();
+    timer->stop();
     pauseFlag=1;
     ui->buttonPause_3->setText("Продолжить");
     writeConsole("Тестирование приостановлено");
@@ -142,18 +151,24 @@ void ProductShell::reset()
 {
 stage=1;
 pauseFlag=0;
-timer.stop();
+timer->stop();
+testTimer->stop();
+
+counterCycles=0;
+counterTime=0;
+
+ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
+ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 сек/%2").arg(QString::number(counterTime)).arg(QString::number( 0)));
 
 
 }
 
 void ProductShell::atFinish()
 {
-    timer.stop();
-    stage=1;
-
-
     writeConsole("Тестирование завершено", MSG_GOOD);
+    reset();
+
+
 }
 
 void ProductShell::writeConsole(QString msg, char type)
@@ -163,6 +178,12 @@ void ProductShell::writeConsole(QString msg, char type)
 #define MSG_NEUTRAL 0
 #define MSG_GOOD 2
 */
+
+
+
+msg=debugLevel==DEBUG_V?tr("Время %1 : ").arg(strtimex(counterTime)).append(msg):msg;
+
+
 
     switch (type)
     {
@@ -186,7 +207,7 @@ void ProductShell::writeConsole(QString msg, char type)
 void ProductShell::acceptResult(char slot, char out, char errCode, double result )
 {
 
-    bool isGood=0;
+
 
     if (errCode>0)
     {
@@ -196,7 +217,6 @@ void ProductShell::acceptResult(char slot, char out, char errCode, double result
         return;
     }
 
-    char resgood = MSG_GOOD;
 
     if (stage-1==2)
 //1st up 2nd down
@@ -253,18 +273,22 @@ void ProductShell::timeout()
 {
 
 
-
     switch (stage)
     {
     case 1:
-           stage++;
-            timer.start(timeToSwitch);
+
+
+
+        writeConsole( "===Начало цикла===");
+
+        stage++;
+            timer->start(timeToSwitch);
             if (debugLevel==DEBUG_V) writeConsole("Включаем УПР1");
 
         break;
     case 2:
         stage++;
-        timer.start(timeToMeasure); //time to measure (2)
+        timer->start(timeToMeasure); //time to measure (2)
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Вкл 2Выкл");
         if (principal->deviceManager->measure(number, 1))
         {
@@ -280,19 +304,19 @@ void ProductShell::timeout()
         break;
     case 3:
         stage++;
-        timer.start(timeBreak); //(3)
+        timer->start(timeBreak); //(3)
         if (debugLevel==DEBUG_V) writeConsole("Выключаем УПР1");
         break;
 
     case 4:
         stage++;
-        timer.start(timeToSwitch); //(1)
+        timer->start(timeToSwitch); //(1)
         if (debugLevel==DEBUG_V) writeConsole("Включаем УПР2");
         break;
 
     case 5:
         stage++;
-        timer.start(timeToMeasure); //time to measure (2)
+        timer->start(timeToMeasure); //time to measure (2)
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Выкл 2Вкл");
 
         if (principal->deviceManager->measure(number, 1))
@@ -309,21 +333,35 @@ void ProductShell::timeout()
     case 6:
         stage=1;
 
-        timer.start(timeBreak); //(3)
+        timer->start(timeBreak); //(3)
         if (debugLevel==DEBUG_V) writeConsole("Выключаем УПР2");
 
         counterCycles++;
+                writeConsole( "===Конец цикла===<br>");
+ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
 
-        if (counterCycles>=numCycles)
+
+   /*if (counterCycles>=numCycles)
         {atFinish();}
+*/
+
 
         break;
 
     }
-    ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
-    ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numTime-counterTime)));
 
 
+
+
+
+}
+void ProductShell::timeoutTestTimer()
+{
+    counterTime++;
+    ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 /%2").arg(  strtimex(counterTime) ).arg(strtimex(numTime-counterTime)))  ;
+
+
+    if (counterTime>=numTime) atFinish();
 }
 
 void ProductShell::on_buttonPause_2_clicked()

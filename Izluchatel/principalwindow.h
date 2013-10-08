@@ -34,6 +34,10 @@ public:
     char debugLevel;
 
 
+    int getNumTime();
+    int getNumCycles();
+
+
     bool validateInputData ();
 
 

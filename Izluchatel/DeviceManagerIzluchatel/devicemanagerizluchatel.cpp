@@ -16,5 +16,6 @@ DeviceManagerIzluchatel::DeviceManagerIzluchatel(PrincipalWindow *iprincipal, QO
 
 principal->shellList.at(slt-1)->acceptResult(slt,out,0,50.1);
 
+return 0;
 
  }

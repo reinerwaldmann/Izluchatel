@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "principalwindow.h"
 #include <QTimer>
+#include "timestuff.h"
 
 #define MSG_ERROR 1
 #define MSG_NEUTRAL 0
@@ -34,9 +35,8 @@ public:
 
 
 
-    QTimer timer; //for testing process
-
- //   QTimer testTime; //for indicating time elapsed
+    QTimer  * timer; //for testing process
+    QTimer *  testTimer; //for indicating time elapsed
 
 
     char debugLevel;
@@ -51,13 +51,14 @@ public:
     int numCycles;
     int counterCycles;
 
-    unsigned long  numTime;
-    int counterTime;
+    long  numTime;
+    long counterTime;//in secs, increased by testTimer
 
     int remainingTimeHolder; //holds remaining time when testing paused
     bool pauseFlag; //rasises as pause is triggered
 
-
+//2 147 483 647
+    //3 600 000
 
     explicit ProductShell(int inumber, PrincipalWindow * iprincipal,  char iDebugLevel=0, QWidget *parent = 0);
     ~ProductShell();
@@ -77,6 +78,7 @@ private:
 
 private slots:
     void  timeout ();
+    void  timeoutTestTimer ();
 
 
 

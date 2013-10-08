@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         principalwindow.cpp \
     productshell.cpp \
-    DeviceManagerIzluchatel/devicemanagerizluchatel.cpp
+    DeviceManagerIzluchatel/devicemanagerizluchatel.cpp \
+    timestuff.cpp
 
 HEADERS  += principalwindow.h \
     productshell.h \
-    DeviceManagerIzluchatel/devicemanagerizluchatel.h
+    DeviceManagerIzluchatel/devicemanagerizluchatel.h \
+    timestuff.h
 
 FORMS    += principalwindow.ui \
     productshell.ui
