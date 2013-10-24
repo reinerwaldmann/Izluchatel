@@ -16,12 +16,18 @@ SOURCES += main.cpp\
         principalwindow.cpp \
     productshell.cpp \
     DeviceManagerIzluchatel/devicemanagerizluchatel.cpp \
-    timestuff.cpp
+    timestuff.cpp \
+    DeviceManagerIzluchatel/devicemanagerizluchatelui.cpp \
+    DeviceManagerIzluchatel/devicewidget.cpp
 
 HEADERS  += principalwindow.h \
     productshell.h \
     DeviceManagerIzluchatel/devicemanagerizluchatel.h \
-    timestuff.h
+    timestuff.h \
+    DeviceManagerIzluchatel/devicemanagerizluchatelui.h \
+    DeviceManagerIzluchatel/devicewidget.h
 
 FORMS    += principalwindow.ui \
-    productshell.ui
+    productshell.ui \
+    DeviceManagerIzluchatel/devicemanagerizluchatelui.ui \
+    DeviceManagerIzluchatel/devicewidget.ui
