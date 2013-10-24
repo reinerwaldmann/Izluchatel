@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,14 +18,18 @@ SOURCES += main.cpp\
     DeviceManagerIzluchatel/devicemanagerizluchatel.cpp \
     timestuff.cpp \
     DeviceManagerIzluchatel/devicemanagerizluchatelui.cpp \
-    DeviceManagerIzluchatel/devicewidget.cpp
+    DeviceManagerIzluchatel/devicewidget.cpp \
+    DeviceManagerIzluchatel/device.cpp \
+    DeviceManagerIzluchatel/devicelan.cpp
 
 HEADERS  += principalwindow.h \
     productshell.h \
     DeviceManagerIzluchatel/devicemanagerizluchatel.h \
     timestuff.h \
     DeviceManagerIzluchatel/devicemanagerizluchatelui.h \
-    DeviceManagerIzluchatel/devicewidget.h
+    DeviceManagerIzluchatel/devicewidget.h \
+    DeviceManagerIzluchatel/device.h \
+    DeviceManagerIzluchatel/devicelan.h
 
 FORMS    += principalwindow.ui \
     productshell.ui \
