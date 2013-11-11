@@ -1,0 +1,118 @@
+﻿Device Manager - packet code 2
+	DeviceManagerIzluchatel - class code 1
+//EC1
+    explicit DeviceManagerIzluchatel(PrincipalWindow * iprincipal,  QObject *parent = 0);
+
+    /**
+     * @brief measure
+     * launches measurement process ASYNC, data is returned by other function
+     * @param slt
+     * @param out
+     * @return 0 if OK, 1 if device is known to be offline
+     */
+    //EC2
+    char measure (char slt, char out);
+
+    /**
+     * @brief checkAllOK
+     * checks all devices
+     * @return if all the devices are OK
+     */
+    //EC3
+    bool checkAllOK ();
+
+
+    /**
+     * @brief connectALL
+     *connects everything
+     */
+    //EC4
+    void connectALL ();
+
+
+    /**
+     * @brief connectx connects the device
+     * @param id of the device in the devices hash
+     */
+    //EC5
+    void connectx (char id);
+
+    //EC6
+    void disconnectAll ();
+
+    //EC7
+    void disconnectx (char id);
+
+
+    /**
+     * @brief acceptMessagelauched by slot of the device (like readyRead slot)
+     *basically relays the message to principal. Detects, what type of a message it is
+     *and relays it to the proper function.
+     * @param msg message itself
+     * @param id id of the device in the list
+     * @param type type of the message (0 - normal, 1 - error), or some other types
+     */
+    //EC8
+    void acceptMessage (QString msg, int id, int type);
+
+    //EC9
+    void acceptMeausure (double value, int id, int type);
+
+   //EC10
+    void acceptPing (int id );
+
+
+    /**
+     * @brief addDevice
+     * we add the device to the list, assign it an id that it'll have in the hash
+     * @param idevice devices
+     * @return 0 all is OK 1 same id already present
+     */
+    //EC11
+    char addDevice (Device * idevice);
+
+
+
+
+	Device Manager Ui - cc 2
+	Device cc 3
+	Devicelan cc 4
+	DeviceRS232 cc5
+	DeviceRS232Rubin201 cc6
+	   //Error code 1
+	    DeviceRS232Rubin201(DeviceManagerIzluchatel *iman);
+	    ~DeviceRS232Rubin201();
+	    //Error code 2
+	    void setPort (QString iport);
+	    //Error code 3
+	    void connectx();
+	    //Error code 4
+	    void disconnecx();
+	    //Error code 5
+	    char measure(int type);
+	    //Error code 6
+	    void ping ();
+	    //Error code 7
+	    void fireConnected();
+	    //Error code 8
+	    void firePingAccepted();
+	    //Error code 9
+	    bool sendToPort(QString msg);  //0 if OK 1 if error
+	    //Error code 10
+	    void onDataAvailable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	DeviceWidget cc 7
+
