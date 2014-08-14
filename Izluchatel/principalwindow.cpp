@@ -8,9 +8,14 @@ PrincipalWindow::PrincipalWindow(int iDebugLevel, QWidget *parent):
 
     debugLevel = iDebugLevel;
     ui->setupUi(this);
+
     addShell();
 
-    deviceManager = new DeviceManagerIzluchatel(this, this);
+    deviceManager = new DeviceManagerIzluchatel(1720, this);
+
+    QObject::connect(deviceManager, SIGNAL( fireTransitMeasData(int id,  double value, QString type) ), this, SLOT(receiveMeasDataAndTransit (int id, double value, QString type)));
+
+
     numCycles=0;
 }
 
@@ -78,6 +83,40 @@ void PrincipalWindow::on_pushButtonTest_clicked()
     QListIterator<ProductShell * > i(shellList);
     while (i.hasNext())
     i.next()->test();
+
+
+}
+
+void PrincipalWindow::closeEvent(QCloseEvent *ce)
+{
+
+    if (deviceManager!=NULL)
+    {
+        if  (deviceManager->UI!=NULL)
+        {
+
+             deviceManager->UI->close();
+        }
+
+    }
+
+
+}
+
+void PrincipalWindow::receiveMeasDataAndTransit (int id, double value, QString type)
+{
+
+    int shellid=(int)id/10; //идентификатор шелла, ведь устройства имеют двухцифренный идентификатор шелл - девайс (1 или 2)
+
+    if (shellList.size()>id)
+        //если есть такой шелл, ассоциированный с данным устройством
+        //есть сомнения, а всегда ли будет сохраняться соответствие
+
+    {
+        shellList[shellid]->receiveMeasData (id%10, value, type);
+
+    }
+
 
 
 }

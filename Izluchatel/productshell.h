@@ -71,6 +71,8 @@ public:
 
     void acceptResult (char slot, char out, char errCode, double result );
 
+    void receiveMeasData (int out, double value, QString type);
+
     
 private:
     Ui::ProductShell *ui;

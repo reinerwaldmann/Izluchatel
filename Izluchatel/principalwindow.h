@@ -44,13 +44,18 @@ public:
     void addShell();
     void removeShell();
 
-
+    void closeEvent(QCloseEvent *ce);
 
 
 private slots:
     void on_spinBoxNumProducts_valueChanged(int arg1);
 
     void on_pushButtonTest_clicked();
+
+
+    void receiveMeasDataAndTransit (int id, double value, QString type);
+
+
 
 private:
     Ui::PrincipalWindow *ui;

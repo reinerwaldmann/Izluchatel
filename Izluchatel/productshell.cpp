@@ -204,11 +204,69 @@ msg=debugLevel==DEBUG_V?tr("Время %1 : ").arg(strtimex(counterTime)).append
 
 
 
+void ProductShell::receiveMeasData (int out, double value, QString type)
+{
+//подразумевается, что, если измерение пришло, оно верное
+
+
+    double result = value;
+
+
+    if (stage-1==2)
+//1st up 2nd down
+    {
+        if (out==1)
+        {
+        if (result<=8)
+    { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_GOOD); }
+     else
+    { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_ERROR); }
+
+         }
+
+        if (out==2)
+        {
+        if (result>=50)
+    { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_GOOD); }
+     else
+    { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_ERROR); }
+         }
+
+
+
+    }
+
+    if (stage-1==5)
+//1st down 2nd up
+//1 включен 2 отключен
+    {
+
+        if (out==2)
+        {
+        if (result<=8)
+    { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_GOOD); }
+     else
+    { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее 8dB").arg (QString::number(result)), MSG_ERROR); }
+
+         }
+
+        if (out==1)
+        {
+        if (result>=50)
+    { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_GOOD); }
+     else
+    { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_ERROR); }
+         }
+
+    }
+
+
+
+
+}
+
 void ProductShell::acceptResult(char slot, char out, char errCode, double result )
 {
-
-
-
     if (errCode>0)
     {
         //возможно, вставить расшифровку ошибки
@@ -290,12 +348,12 @@ void ProductShell::timeout()
         stage++;
         timer->start(timeToMeasure); //time to measure (2)
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Вкл 2Выкл");
-        if (principal->deviceManager->measure(number, 1))
+        if (principal->deviceManager->measure(number*10+1))
         {
             writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
 
         }
-        if (principal->deviceManager->measure(number, 2))
+        if (principal->deviceManager->measure(number*10+2))
         {
             writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
 
@@ -319,12 +377,12 @@ void ProductShell::timeout()
         timer->start(timeToMeasure); //time to measure (2)
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Выкл 2Вкл");
 
-        if (principal->deviceManager->measure(number, 1))
+        if (principal->deviceManager->measure(number*10+1))
         {
             writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
 
         }
-        if (principal->deviceManager->measure(number, 2))
+        if (principal->deviceManager->measure(number*10+2))
         {
             writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
 

@@ -170,6 +170,9 @@ int DeviceRS232Rubin201::sendToPort(QString msg)
         ms(QString (">")+msg, MSG_DEBUG);
 
         reqtimer->start(timeout);
+        return 0;
+
+
 }
 
 
