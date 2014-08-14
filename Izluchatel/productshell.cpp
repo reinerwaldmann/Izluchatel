@@ -115,8 +115,9 @@ void ProductShell::test()
 
 }
 
-void ProductShell::pause()
+void ProductShell::pause(int val) //pause testing  0 - pause-resume, 1 - force pause 2 - force resume
 {
+
 
     if (pauseFlag) //resume
     {

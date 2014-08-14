@@ -13,7 +13,7 @@ PrincipalWindow::PrincipalWindow(int iDebugLevel, QWidget *parent):
 
     deviceManager = new DeviceManagerIzluchatel(1720, this);
 
-    QObject::connect(deviceManager, SIGNAL( fireTransitMeasData(int id,  double value, QString type) ), this, SLOT(receiveMeasDataAndTransit (int id, double value, QString type)));
+    QObject::connect(deviceManager, SIGNAL( fireTransitMeasData(int,  double , QString ) ), this, SLOT(receiveMeasDataAndTransit (int , double , QString )));
 
 
     numCycles=0;
@@ -106,15 +106,17 @@ void PrincipalWindow::closeEvent(QCloseEvent *ce)
 void PrincipalWindow::receiveMeasDataAndTransit (int id, double value, QString type)
 {
 
+
     int shellid=(int)id/10; //идентификатор шелла, ведь устройства имеют двухцифренный идентификатор шелл - девайс (1 или 2)
 
-    if (shellList.size()>id)
+    if (shellList.size()>=shellid)
         //если есть такой шелл, ассоциированный с данным устройством
         //есть сомнения, а всегда ли будет сохраняться соответствие
-
     {
-        shellList[shellid]->receiveMeasData (id%10, value, type);
+        qDebug()<< "Received "+QString::number(id)+"\t"+QString::number(value)+"\t"+type+"\t"+QString::number(shellid);
 
+
+        shellList[shellid-1]->receiveMeasData (id%10, value, type);
     }
 
 
