@@ -89,21 +89,11 @@ void ProductShell::test()
 
 
         //writeConsole(tr("Timebreak=%1 msec").arg(QString::number(timeBreak)));
-
         }
-
-
-
     counterCycles=0;
     counterTime=0;
-
-
-
     if (debugLevel==DEBUG_V)
     writeConsole("Запуск начала тестирования");
-
-
-
     timer->setSingleShot(1);
     timer->start(timeBreak); //first time start
     stage = 1;

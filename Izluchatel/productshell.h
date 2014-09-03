@@ -65,7 +65,7 @@ public:
     void writeConsole (QString msg, char type=0);
     void test (); //begin testing
     void atFinish(); //fired at finish of testing process
-    void pause(); //pause testing
+    void pause(int val=0); //pause testing  0 - pause-resume, 1 - force pause 2 - force resume
     void reset(); //reset testing
 
 

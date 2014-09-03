@@ -57,8 +57,14 @@ private slots:
 
 
 
+    void on_pushButtonSaveReports_clicked();
+
+    void on_pushButtonReset_clicked();
+
 private:
     Ui::PrincipalWindow *ui;
 };
 
 #endif // PRINCIPALWINDOW_H
+
+

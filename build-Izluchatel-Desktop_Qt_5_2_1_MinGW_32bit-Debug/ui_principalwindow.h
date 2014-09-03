@@ -260,7 +260,7 @@ public:
 
     void retranslateUi(QMainWindow *PrincipalWindow)
     {
-        PrincipalWindow->setWindowTitle(QApplication::translate("PrincipalWindow", "PrincipalWindow", 0));
+        PrincipalWindow->setWindowTitle(QApplication::translate("PrincipalWindow", "\320\223\320\273\320\260\320\262\320\275\320\276\320\265 \320\276\320\272\320\275\320\276", 0));
         groupBoxTesting->setTitle(QApplication::translate("PrincipalWindow", "\320\230\321\201\320\277\321\213\321\202\320\260\320\275\320\270\321\217", 0));
         label->setText(QApplication::translate("PrincipalWindow", "\320\232\320\276\320\273-\320\262\320\276 \320\276\320\261\321\200\320\260\320\267\321\206\320\276\320\262", 0));
         label_2->setText(QApplication::translate("PrincipalWindow", "\320\232\320\276\320\273-\320\262\320\276 \321\206\320\270\320\272\320\273\320\276\320\262", 0));
