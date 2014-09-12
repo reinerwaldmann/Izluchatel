@@ -63,6 +63,8 @@ public:
     explicit ProductShell(int inumber, PrincipalWindow * iprincipal,  char iDebugLevel=0, QWidget *parent = 0);
     ~ProductShell();
     void writeConsole (QString msg, char type=0);
+    QString getConsoleText(); //получить записанное в консоли
+
     void test (); //begin testing
     void atFinish(); //fired at finish of testing process
     void pause(int val=0); //pause testing  0 - pause-resume, 1 - force pause 2 - force resume
@@ -72,6 +74,9 @@ public:
     void acceptResult (char slot, char out, char errCode, double result );
 
     void receiveMeasData (int out, double value, QString type);
+
+    bool switchController (int out, bool state);  //Переключить контроллер
+    //out - выход, 1 или 2. State = состояние (1 вкл 0 выкл)
 
     
 private:

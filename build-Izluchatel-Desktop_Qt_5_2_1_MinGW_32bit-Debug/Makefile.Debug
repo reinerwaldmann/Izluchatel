@@ -395,6 +395,15 @@ debug/moc_principalwindow.cpp: C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QList \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFileDialog \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDateTime \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmessagebox.h \
 		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatel.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QObject \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QFile \
@@ -554,6 +563,15 @@ debug/moc_productshell.cpp: C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWi
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QList \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFileDialog \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDateTime \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmessagebox.h \
 		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatel.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QObject \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QFile \
@@ -2061,6 +2079,15 @@ debug/main.o: ../Izluchatel/main.cpp ../Izluchatel/principalwindow.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QList \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFileDialog \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDateTime \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmessagebox.h \
 		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatel.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QObject \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QFile \
@@ -2111,161 +2138,7 @@ debug/main.o: ../Izluchatel/main.cpp ../Izluchatel/principalwindow.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Izluchatel\main.cpp
 
-debug/principalwindow.o: ../Izluchatel/principalwindow.cpp ../Izluchatel/principalwindow.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMainWindow \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmainwindow.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qwidget.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qwindowdefs.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qglobal.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qconfig.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfeatures.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qsystemdetection.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qprocessordetection.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qcompilerdetection.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qglobalstatic.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qbasicatomic.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_bootstrap.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qgenericatomic.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_msvc.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_integrity.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qoldbasicatomic.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_vxworks.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_power.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_alpha.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_armv7.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_armv6.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_armv5.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_bfin.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_ia64.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_mips.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_s390.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_sh4a.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_sparc.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_x86.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_gcc.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qatomic_unix.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qmutex.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qlogging.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qflags.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qtypeinfo.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qnamespace.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qobject.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qstring.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qchar.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qbytearray.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qarraydata.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qstringbuilder.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qlist.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qalgorithms.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qiterator.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qcoreevent.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qscopedpointer.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qmetatype.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qvarlengtharray.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qcontainerfwd.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qisenum.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qobject_impl.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qmargins.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qrect.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qsize.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qpoint.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpalette.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qcolor.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qrgb.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qstringlist.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdatastream.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qiodevice.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qpair.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qregexp.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qbrush.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qvector.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qmatrix.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpolygon.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qregion.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qline.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtransform.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpainterpath.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qimage.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qpixmap.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qshareddata.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qhash.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qfont.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qfontmetrics.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qfontinfo.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qcursor.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qkeysequence.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qevent.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qvariant.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qmap.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdebug.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qtextstream.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qlocale.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qset.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qcontiguouscache.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qurl.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qurlquery.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfile.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfiledevice.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qvector2d.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qtouchdevice.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QList \
-		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatel.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QObject \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QFile \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QXmlStreamWriter \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qxmlstream.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtXml/QDomText \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtXml/qdom.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtXml/qtxmlglobal.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtXml/QDomElement \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QTextCodec \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qtextcodec.h \
-		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatelui.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDebug \
-		../Izluchatel/DeviceManagerIzluchatel/devicelanjerome.h \
-		../Izluchatel/DeviceManagerIzluchatel/devicelan.h \
-		../Izluchatel/DeviceManagerIzluchatel/device.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QTimer \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qtimer.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qbasictimer.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qDebug \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtXml/QDomNode \
-		../Izluchatel/DeviceManagerIzluchatel/controller.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QString \
-		../Izluchatel/DeviceManagerIzluchatel/measurer.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtNetwork/qtcpsocket.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtNetwork/qabstractsocket.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDataStream \
-		../Izluchatel/DeviceManagerIzluchatel/devicers232rubin201.h \
-		../Izluchatel/DeviceManagerIzluchatel/devicers232.h \
-		../Izluchatel/qextserialport-1.2beta2/src/qextserialport.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QIODevice \
-		../Izluchatel/qextserialport-1.2beta2/src/qextserialport_global.h \
-		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QtGlobal \
-		../Izluchatel/qextserialport-1.2beta2/src/qextserialenumerator.h \
-		../Izluchatel/productshell.h \
-		../Izluchatel/timestuff.h \
-		ui_principalwindow.h
+debug/principalwindow.o: ../Izluchatel/principalwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\principalwindow.o ..\Izluchatel\principalwindow.cpp
 
 debug/productshell.o: ../Izluchatel/productshell.cpp ../Izluchatel/productshell.h \
@@ -2383,6 +2256,15 @@ debug/productshell.o: ../Izluchatel/productshell.cpp ../Izluchatel/productshell.
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QList \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QFileDialog \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QDateTime \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtWidgets/qmessagebox.h \
 		../Izluchatel/DeviceManagerIzluchatel/devicemanagerizluchatel.h \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QObject \
 		C:/Qt/Qt5.2.1/5.2.1/mingw48_32/include/QtCore/QFile \

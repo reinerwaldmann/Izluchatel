@@ -25,6 +25,13 @@ public:
      * @param line строка, которая устанавливает состояние. Может не наследоваться, тогда ничего не делает
      */
     virtual void wrLines(QString line);
+
+    /**
+     * @brief wrLines устанавливает 0 на всех линиях
+     */
+    virtual void nullLines();
+
+
 };
 
 #endif // CONTROLLER_H

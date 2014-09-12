@@ -47,9 +47,6 @@ public:
     QLabel *label_10;
     QGroupBox *groupBox_2;
     QHBoxLayout *horizontalLayout_4;
-    QLabel *label_4;
-    QSpinBox *spinBoxWaveLenght;
-    QLabel *label_7;
     QLabel *label_5;
     QSpinBox *spinBoxThresON;
     QLabel *label_8;
@@ -156,24 +153,6 @@ public:
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(-1, 2, -1, 9);
-        label_4 = new QLabel(groupBox_2);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        horizontalLayout_4->addWidget(label_4);
-
-        spinBoxWaveLenght = new QSpinBox(groupBox_2);
-        spinBoxWaveLenght->setObjectName(QStringLiteral("spinBoxWaveLenght"));
-        spinBoxWaveLenght->setMinimumSize(QSize(0, 30));
-        spinBoxWaveLenght->setMinimum(1);
-        spinBoxWaveLenght->setMaximum(3);
-
-        horizontalLayout_4->addWidget(spinBoxWaveLenght);
-
-        label_7 = new QLabel(groupBox_2);
-        label_7->setObjectName(QStringLiteral("label_7"));
-
-        horizontalLayout_4->addWidget(label_7);
-
         label_5 = new QLabel(groupBox_2);
         label_5->setObjectName(QStringLiteral("label_5"));
 
@@ -276,8 +255,6 @@ public:
         );
         label_10->setText(QApplication::translate("PrincipalWindow", "\321\207.", 0));
         groupBox_2->setTitle(QApplication::translate("PrincipalWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270", 0));
-        label_4->setText(QApplication::translate("PrincipalWindow", "\320\224\320\273\320\270\320\275\320\260 \320\262\320\276\320\273\320\275\321\213", 0));
-        label_7->setText(QApplication::translate("PrincipalWindow", "\320\235\320\274", 0));
         label_5->setText(QApplication::translate("PrincipalWindow", "\320\237\320\276\321\200\320\276\320\263 \320\262\320\272\320\273.", 0));
         label_8->setText(QApplication::translate("PrincipalWindow", "dB", 0));
         label_6->setText(QApplication::translate("PrincipalWindow", "\320\237\320\276\321\200\320\276\320\263 \320\262\321\213\320\272\320\273.", 0));

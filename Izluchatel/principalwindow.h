@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QList>
+#include <QFileDialog>
+#include <QDateTime>
+#include <QMessageBox>
 
 #include "DeviceManagerIzluchatel/devicemanagerizluchatel.h"
 #include "productshell.h"
@@ -46,6 +49,8 @@ public:
 
     void closeEvent(QCloseEvent *ce);
 
+    void blockButtons(int state);
+
 
 private slots:
     void on_spinBoxNumProducts_valueChanged(int arg1);
@@ -57,14 +62,19 @@ private slots:
 
 
 
-    void on_pushButtonSaveReports_clicked();
+
+
 
     void on_pushButtonReset_clicked();
+
+    void on_pushButtonSaveReports_clicked();
 
 private:
     Ui::PrincipalWindow *ui;
 };
 
 #endif // PRINCIPALWINDOW_H
+
+
 
 

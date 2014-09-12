@@ -140,6 +140,7 @@ void ProductShell::pause(int val) //pause testing  0 - pause-resume, 1 - force p
 
 void ProductShell::reset()
 {
+writeConsole("Тестирование сброшено");
 stage=1;
 pauseFlag=0;
 timer->stop();
@@ -161,6 +162,14 @@ void ProductShell::atFinish()
 
 
 }
+
+QString ProductShell::getConsoleText() //получить записанное в консоли
+{
+return ui->textEditShell->toHtml(); //а может и в plainText?? попробуем пока так
+
+
+}
+
 
 void ProductShell::writeConsole(QString msg, char type)
 {
@@ -333,6 +342,8 @@ void ProductShell::timeout()
         stage++;
             timer->start(timeToSwitch);
             if (debugLevel==DEBUG_V) writeConsole("Включаем УПР1");
+            switchController (1, 1);
+
 
         break;
     case 2:
@@ -355,12 +366,14 @@ void ProductShell::timeout()
         stage++;
         timer->start(timeBreak); //(3)
         if (debugLevel==DEBUG_V) writeConsole("Выключаем УПР1");
+        switchController (1, 0);
         break;
 
     case 4:
         stage++;
         timer->start(timeToSwitch); //(1)
         if (debugLevel==DEBUG_V) writeConsole("Включаем УПР2");
+        switchController (2, 1);
         break;
 
     case 5:
@@ -383,6 +396,7 @@ void ProductShell::timeout()
         stage=1;
 
         timer->start(timeBreak); //(3)
+        switchController (2, 0);
         if (debugLevel==DEBUG_V) writeConsole("Выключаем УПР2");
 
         counterCycles++;
@@ -415,10 +429,11 @@ void ProductShell::timeoutTestTimer()
 
 void ProductShell::on_buttonPause_2_clicked()
 {
+
     ui->textEditShell->clear();
 
     //for debugging
-    reset();
+//    reset();
 }
 
 
@@ -426,7 +441,7 @@ void ProductShell::on_buttonPause_2_clicked()
 void ProductShell::on_buttonReset_clicked()
 {
 reset();
-writeConsole("Тестирование сброшено");
+
 
 }
 
@@ -439,4 +454,27 @@ void ProductShell::on_buttonPause_3_clicked()
 void ProductShell::on_buttonTest_clicked()
 {
 test();
+}
+
+
+bool ProductShell::switchController (int out, bool state)
+//Переключить контроллер
+//out - выход, 1 или 2. State = состояние (1 вкл 0 выкл)
+{
+int realout=out;
+    switch (number):
+    {
+        case 1:
+
+            break;
+        case 2:
+            realout+=2;
+            break;
+        case 3:
+            realout+=4;
+            break;
+
+    }
+
+    return principal->deviceManager->wrLine(realout, state);
 }

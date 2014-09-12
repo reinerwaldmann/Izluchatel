@@ -17,6 +17,8 @@ public:
      void wrLine(int numline, bool state=1);
      int sendToPort(QString msg);
 
+     int nullLines();//зануляет все линии, команда $KE, WRA, 0000000000000000000000
+
 
 
 public slots:

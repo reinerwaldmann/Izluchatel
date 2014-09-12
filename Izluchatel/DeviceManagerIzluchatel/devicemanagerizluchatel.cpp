@@ -448,8 +448,8 @@ int DeviceManagerIzluchatel::wrLine(int numline, bool state)
 //здесь можно понаписать код, который будет искать контроллер в списке и инициализировать оную переменную
 if (controller!=NULL)
     {
-    controller->wrLine(numline, state);
-    return 0;
+    return controller->wrLine(numline, state);
+
     }
 
 else
@@ -458,3 +458,22 @@ else
     }
 
 }
+
+
+int DeviceManagerIzluchatel::nullLines()
+{
+//упрощённая версия, полагающая, что контроллер задан в переменной Controller
+//здесь можно понаписать код, который будет искать контроллер в списке и инициализировать оную переменную
+if (controller!=NULL)
+    {
+    return controller->nullLines();
+    }
+
+else
+    {
+    return 1;
+    }
+
+}
+
+
