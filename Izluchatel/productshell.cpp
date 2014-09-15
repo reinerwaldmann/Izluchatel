@@ -45,16 +45,13 @@ ProductShell::~ProductShell()
 
 void ProductShell::test()
 {
-
-
-
     if (timer->isActive() || pauseFlag)
     {
         if (debugLevel==DEBUG_V)
         writeConsole("Попытка запуска тестирования, которое уже запущено");
-
         return;
     }
+    ui->textEditShell->clear();
 
     numCycles = principal->getNumCycles();
 //2 147 481 523
@@ -68,7 +65,6 @@ void ProductShell::test()
 так как все переменные целого типа. Это, скорее всего, приведёт к тому, что система
 всё же раньше справится с циклами, нежели положено по времени
 и потребуется подержать реле в одном состоянии некоторое время.
-
 */
 
     if (timeBreak<minTimeBreak)
@@ -154,6 +150,8 @@ if (val==1)
 
 void ProductShell::reset()
 {
+ui->textEditShell->clear();
+
 writeConsole("Тестирование сброшено");
 stage=1;
 pauseFlag=0;
@@ -359,20 +357,19 @@ void ProductShell::timeout()
 
     switch (stage)
     {
-    case 1:
+    case 1: //включаем управление 1
 
 
 
-        writeConsole( "===Начало цикла===");
-
-        stage++;
+            writeConsole( "===Начало цикла===");
+            stage++;
             timer->start(timeToSwitch);
             if (debugLevel==DEBUG_V) writeConsole("Включаем УПР1");
             switchController (1, 1);
 
-
         break;
-    case 2:
+
+    case 2: //измеряем
         stage++;
         timer->start(timeToMeasure); //time to measure (2)
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Вкл 2Выкл");
@@ -431,8 +428,8 @@ void ProductShell::timeout()
         if (debugLevel==DEBUG_V) writeConsole("Выключаем УПР2");
 
         counterCycles++;
-                writeConsole( "===Конец цикла===<br>");
-ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
+        writeConsole( "===Конец цикла===<br>");
+        ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
 
 
    /*if (counterCycles>=numCycles)
@@ -471,7 +468,7 @@ void ProductShell::on_buttonPause_2_clicked()
 
 void ProductShell::on_buttonReset_clicked()
 {
- ui->textEditShell->clear();
+
     reset();
 
 
@@ -485,7 +482,7 @@ void ProductShell::on_buttonPause_3_clicked()
 
 void ProductShell::on_buttonTest_clicked()
 {
-     ui->textEditShell->clear();
+
 test();
 }
 
