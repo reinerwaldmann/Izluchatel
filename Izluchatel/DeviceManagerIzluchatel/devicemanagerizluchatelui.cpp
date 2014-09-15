@@ -81,7 +81,12 @@ void DeviceManagerIzluchatelUI::displayDevices()
 
        QTableWidgetItem * item = new QTableWidgetItem (QString::number (k));
        QTableWidgetItem * item1 = new QTableWidgetItem (devman->devicesHash.value(k)->getName());
+
        QTableWidgetItem * item2 = new QTableWidgetItem (devman->devicesHash.value(k)->getIsConnected()?"Подключено":"Отключено");
+       item2 ->setBackground(devman->devicesHash.value(k)->getIsConnected()?Qt::green:Qt::red);
+
+
+
        QTableWidgetItem * item3 = new QTableWidgetItem (devman->devicesHash.value(k)->getPosition());
 
 

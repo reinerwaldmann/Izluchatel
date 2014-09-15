@@ -40,14 +40,16 @@ void DeviceLANJerome::readyRead ()
 
 }
 
-void DeviceLANJerome::wrLine(int numline, bool state)
+int DeviceLANJerome::wrLine(int numline, bool state)
 {
-sendToPort(tr("$KE,WR,%1,%2").arg(numline).arg(state));
+if  (!isConnected) return 1;
+return !sendToPort(tr("$KE,WR,%1,%2").arg(numline).arg(state));
 }
 
-int DeviceLANJerome::nullAllLines()//зануляет все линии, команда $KE, WRA, 0000000000000000000000
+int DeviceLANJerome::nullLines()//зануляет все линии, команда $KE, WRA, 0000000000000000000000
 {
-sendToPort(tr("$KE,WRA,0000000000000000000000"));
+if  (!isConnected) return 1;
+return !sendToPort(tr("$KE,WRA,0000000000000000000000"));
 }
 
 
@@ -55,5 +57,5 @@ sendToPort(tr("$KE,WRA,0000000000000000000000"));
 int DeviceLANJerome::sendToPort(QString msg)
 {
 
-DeviceLAN::sendToPort(msg+"\r\n");
+return DeviceLAN::sendToPort(msg+"\r\n");
 }

@@ -108,6 +108,19 @@ void ProductShell::test()
 void ProductShell::pause(int val) //pause testing  0 - pause-resume, 1 - force pause 2 - force resume
 {
 
+if (val==1)
+{
+    testTimer->stop();
+    remainingTimeHolder = timer->remainingTime();
+    timer->stop();
+    pauseFlag=1;
+    ui->buttonPause_3->setText("Продолжить");
+    writeConsole("Тестирование приостановлено");
+
+    return;
+
+}
+
 
     if (pauseFlag) //resume
     {
@@ -116,6 +129,7 @@ void ProductShell::pause(int val) //pause testing  0 - pause-resume, 1 - force p
         writeConsole("Тестирование возобновлено");
         pauseFlag=0;
         testTimer->start(1000);
+        timeout();
 
         return;
 
@@ -152,13 +166,25 @@ counterTime=0;
 ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
 ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 сек/%2").arg(QString::number(counterTime)).arg(QString::number( 0)));
 
+principal->deviceManager->nullLines();
 
 }
 
 void ProductShell::atFinish()
 {
     writeConsole("Тестирование завершено", MSG_GOOD);
-    reset();
+    stage=1;
+    pauseFlag=0;
+    timer->stop();
+    testTimer->stop();
+
+    counterCycles=0;
+    counterTime=0;
+
+    ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
+    ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 сек/%2").arg(QString::number(counterTime)).arg(QString::number( 0)));
+
+    principal->deviceManager->nullLines();
 
 
 }
@@ -352,12 +378,15 @@ void ProductShell::timeout()
         if (debugLevel==DEBUG_V) writeConsole("Производим измерения, 1Вкл 2Выкл");
         if (principal->deviceManager->measure(number*10+1))
         {
-            writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
+            criticalError (tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
+
+            //writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
 
         }
         if (principal->deviceManager->measure(number*10+2))
         {
-            writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
+            criticalError(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
+            //writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
 
         }
 
@@ -383,12 +412,14 @@ void ProductShell::timeout()
 
         if (principal->deviceManager->measure(number*10+1))
         {
-            writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
+            criticalError(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
+            //writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(1)));
 
         }
         if (principal->deviceManager->measure(number*10+2))
         {
-            writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
+            criticalError(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
+            //writeConsole(tr ("Ошибка при измерении изделие %1 слот %2").arg(QString::number(number)).arg(QString::number(2)));
 
         }
                 break;
@@ -440,7 +471,8 @@ void ProductShell::on_buttonPause_2_clicked()
 
 void ProductShell::on_buttonReset_clicked()
 {
-reset();
+ ui->textEditShell->clear();
+    reset();
 
 
 }
@@ -453,6 +485,7 @@ void ProductShell::on_buttonPause_3_clicked()
 
 void ProductShell::on_buttonTest_clicked()
 {
+     ui->textEditShell->clear();
 test();
 }
 
@@ -461,8 +494,8 @@ bool ProductShell::switchController (int out, bool state)
 //Переключить контроллер
 //out - выход, 1 или 2. State = состояние (1 вкл 0 выкл)
 {
-int realout=out;
-    switch (number):
+    int realout=out;
+    switch (number)
     {
         case 1:
 
@@ -476,5 +509,15 @@ int realout=out;
 
     }
 
-    return principal->deviceManager->wrLine(realout, state);
+    bool error=principal->deviceManager->wrLine(realout, state);
+    if (error) criticalError("не удаётся связаться с контроллером");
 }
+
+void ProductShell::criticalError(QString msg) //запускает при критичной ошибке, требуещей постановки тестирования на паузу
+{
+    pause(1);
+    writeConsole(tr ("Критичная ошибка: %1.").arg(msg) , MSG_ERROR );
+    principal->deviceManager->nullLines();
+
+}
+

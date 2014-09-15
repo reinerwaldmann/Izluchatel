@@ -14,7 +14,7 @@ public:
 
     //Джеромоспецифичное
      //устанавливает уровень на линии, команда $KE,WR, <line>, <state>
-     void wrLine(int numline, bool state=1);
+     int wrLine(int numline, bool state=1);
      int sendToPort(QString msg);
 
      int nullLines();//зануляет все линии, команда $KE, WRA, 0000000000000000000000

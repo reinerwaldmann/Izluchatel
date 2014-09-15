@@ -5,5 +5,5 @@ Controller::Controller()
 }
 
 
-void Controller::wrLines(QString line)
+int Controller::wrLines(QString line)
 {}

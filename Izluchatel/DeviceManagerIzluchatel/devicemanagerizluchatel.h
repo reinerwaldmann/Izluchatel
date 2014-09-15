@@ -137,6 +137,14 @@ public:
      */
     int wrLine(int numline, bool state=1);
 
+
+    /**
+     * @brief wrLine
+     * Обнулить линии контроллера
+     */
+    int nullLines();
+
+
     int searchRS232DevicesOnPorts  (int idInActiveDevList);
 
     /**

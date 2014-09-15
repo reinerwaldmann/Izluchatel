@@ -78,6 +78,10 @@ public:
     bool switchController (int out, bool state);  //Переключить контроллер
     //out - выход, 1 или 2. State = состояние (1 вкл 0 выкл)
 
+    void criticalError(QString msg=""); //запускает при критичной ошибке, требуещей постановки тестирования на паузу
+
+
+
     
 private:
     Ui::ProductShell *ui;
