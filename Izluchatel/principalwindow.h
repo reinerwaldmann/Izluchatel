@@ -6,9 +6,12 @@
 #include <QFileDialog>
 #include <QDateTime>
 #include <QMessageBox>
+#include <QSettings>
 
 #include "DeviceManagerIzluchatel/devicemanagerizluchatel.h"
 #include "productshell.h"
+
+
 
 namespace Ui {
 class PrincipalWindow;
@@ -51,6 +54,13 @@ public:
 
     void blockButtons(int state);
 
+    double getThresholdOn();
+    double getThresholdOff();
+
+
+
+
+
 
 private slots:
     void on_spinBoxNumProducts_valueChanged(int arg1);
@@ -68,6 +78,8 @@ private slots:
     void on_pushButtonReset_clicked();
 
     void on_pushButtonSaveReports_clicked();
+
+    void on_pushButtonReset_2_clicked();
 
 private:
     Ui::PrincipalWindow *ui;

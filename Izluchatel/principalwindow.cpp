@@ -14,11 +14,20 @@ addShell();
 deviceManager = new DeviceManagerIzluchatel(1720, this);
 QObject::connect(deviceManager, SIGNAL( fireTransitMeasData(int, double , QString ) ), this, SLOT(receiveMeasDataAndTransit (int , double , QString )));
 numCycles=0;
+
+QSettings settings("SKTB", "Izluchatel");
+restoreGeometry(settings.value("PrincipalWindow-geometry").toByteArray());
+restoreState(settings.value("PrincipalWindow-state").toByteArray());
+
 }
 PrincipalWindow::~PrincipalWindow()
 {
-delete ui;
+
+
+
+    delete ui;
 }
+
 void PrincipalWindow::addShell()
 {
 ProductShell * pr = new ProductShell (shellList.size()+1, this, debugLevel, this);
@@ -62,13 +71,22 @@ void PrincipalWindow::on_pushButtonTest_clicked()
 }
 void PrincipalWindow::closeEvent(QCloseEvent *ce)
 {
-if (deviceManager!=NULL)
-{
-if (deviceManager->UI!=NULL)
-{
-deviceManager->UI->close();
-}
-}
+    if (deviceManager!=NULL)
+    {
+        if (deviceManager->UI!=NULL)
+        {
+            deviceManager->UI->close();
+            on_pushButtonReset_clicked();
+
+        }
+    }
+
+    QSettings settings("SKTB", "Izluchatel");
+    settings.setValue("PrincipalWindow-geometry", saveGeometry());
+    settings.setValue("PrincipalWindow-state", saveState());
+
+    QWidget::closeEvent(ce);
+
 }
 void PrincipalWindow::receiveMeasDataAndTransit (int id, double value, QString type)
 {
@@ -132,3 +150,21 @@ void PrincipalWindow::blockButtons(int state)
 
 
 }
+
+double PrincipalWindow::getThresholdOn()
+{
+    return ui->spinBoxThresON->value();
+
+}
+
+double PrincipalWindow::getThresholdOff()
+{
+    return ui->spinBoxThresOFF->value();
+
+}
+
+void PrincipalWindow::on_pushButtonReset_2_clicked()
+{
+deviceManager->UI->show();
+}
+

@@ -76,7 +76,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Кол-во циклов</string>
+          <string>Кол-во коммутаций</string>
          </property>
         </widget>
        </item>
@@ -120,51 +120,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_11">
+        <widget class="QRadioButton" name="radioButton_2">
          <property name="text">
-          <string>мин (test)</string>
+          <string>мин</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBoxTime">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <item>
-          <property name="text">
-           <string>96</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>168</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>200</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>500</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1000</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_10">
+        <widget class="QRadioButton" name="radioButton">
          <property name="text">
-          <string>ч.</string>
+          <string>ч</string>
          </property>
         </widget>
        </item>
@@ -210,8 +175,14 @@
            <height>30</height>
           </size>
          </property>
+         <property name="minimum">
+          <number>-1000</number>
+         </property>
          <property name="maximum">
-          <number>1000000000</number>
+          <number>1000</number>
+         </property>
+         <property name="value">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -237,8 +208,14 @@
            <height>30</height>
           </size>
          </property>
+         <property name="minimum">
+          <number>-1000</number>
+         </property>
          <property name="maximum">
-          <number>1000000000</number>
+          <number>1000</number>
+         </property>
+         <property name="value">
+          <number>40</number>
          </property>
         </widget>
        </item>
@@ -293,6 +270,19 @@
         </property>
         <property name="text">
          <string>Сброс</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonReset_2">
+        <property name="minimumSize">
+         <size>
+          <width>1</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Отобразить менеджер устройств</string>
         </property>
        </widget>
       </item>

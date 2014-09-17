@@ -14,9 +14,16 @@
 #define DEBUG_V 1
 
 
-const int timeToSwitch = 500; //ms
-const int timeToMeasure = 2000; //ms
-const int minTimeBreak=500; //ms
+/*nst int timeToSwitch = 300*1000; //ms
+const int timeToMeasure = 45*1000; //ms
+const int minTimeBreak=100; //ms
+*/
+
+
+const int timeToSwitch = 30*1000; //ms
+const int timeToMeasure = 4*1000; //ms
+const int minTimeBreak=100; //ms
+
 
 namespace Ui {
 class ProductShell;
@@ -56,6 +63,9 @@ public:
 
     int remainingTimeHolder; //holds remaining time when testing paused
     bool pauseFlag; //rasises as pause is triggered
+
+    double thresholdON, thresholdOFF;
+
 
 //2 147 483 647
     //3 600 000

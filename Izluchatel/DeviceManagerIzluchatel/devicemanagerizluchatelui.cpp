@@ -10,6 +10,11 @@ DeviceManagerIzluchatelUI::DeviceManagerIzluchatelUI(DeviceManagerIzluchatel *id
     ui->comboLevelOfOutput->setCurrentIndex(2);
     ui->searchDevice_2->hide();
 
+    QSettings settings("SKTB", "DeviceManager");
+    restoreGeometry(settings.value("DeviceManager-geometry").toByteArray());
+
+
+
 }
 
 DeviceManagerIzluchatelUI::~DeviceManagerIzluchatelUI()
@@ -139,5 +144,18 @@ void DeviceManagerIzluchatelUI::displayActiveDevices()
 
 void DeviceManagerIzluchatelUI::on_searchDevice_2_clicked()
 {
+
+}
+
+
+void DeviceManagerIzluchatelUI::closeEvent(QCloseEvent *ce)
+{
+
+
+    QSettings settings("SKTB", "DeviceManager");
+    settings.setValue("DeviceManager-geometry", saveGeometry());
+
+
+    QWidget::closeEvent(ce);
 
 }

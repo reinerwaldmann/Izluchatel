@@ -1,9 +1,11 @@
 #ifndef DEVICEMANAGERIZLUCHATELUI_H
 #define DEVICEMANAGERIZLUCHATELUI_H
 
+#include <QMainWindow>
 #include <QWidget>
 #include "devicemanagerizluchatel.h"
 #include <QPushButton>
+#include <QSettings>
 
 
 #include<QDebug>
@@ -38,7 +40,7 @@ public:
     void displayDevices();
     void displayActiveDevices();
 
-
+    void closeEvent(QCloseEvent *ce);
 
 
     DeviceManagerIzluchatel * devman;

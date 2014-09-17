@@ -1,6 +1,6 @@
 #include "devicemanagerizluchatel.h"
 
-DeviceManagerIzluchatel::DeviceManagerIzluchatel(int icurrentstandid, QObject *parent):
+DeviceManagerIzluchatel::DeviceManagerIzluchatel(int icurrentstandid, QWidget *parent):
     QObject(parent)
 {
     controller = NULL;
@@ -21,6 +21,7 @@ DeviceManagerIzluchatel::DeviceManagerIzluchatel(int icurrentstandid, QObject *p
 
 DeviceManagerIzluchatel::~DeviceManagerIzluchatel ()
 {
+    return;
         QList <int> keylist = devicesHash.keys();
         char key;
         foreach (key, keylist)
@@ -29,7 +30,7 @@ DeviceManagerIzluchatel::~DeviceManagerIzluchatel ()
         }
         devicesHash.clear();
         activeDevicesHash.clear();
-        delete UI;
+        //delete UI;
 }
  int DeviceManagerIzluchatel::measure (int id, QString type)//returns 0 if OK, 1 if device is
  {//makes measurements

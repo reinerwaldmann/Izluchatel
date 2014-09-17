@@ -34,7 +34,7 @@ class DeviceManagerIzluchatel : public QObject
     Q_OBJECT
 public:
     //EC1
-    explicit DeviceManagerIzluchatel(/*PrincipalWindow * iprincipal, */int currentStandId=0, QObject *parent = 0);
+    explicit DeviceManagerIzluchatel(int currentStandId=0, QWidget *parent = 0);
     ~DeviceManagerIzluchatel ();
 
     /**
