@@ -10,7 +10,15 @@ ui(new Ui::PrincipalWindow)
 {
 debugLevel = iDebugLevel;
 ui->setupUi(this);
+
+ui->spinBoxNumProducts->hide();
+ui->label->hide();
+
+
 addShell();
+addShell();
+addShell();
+
 deviceManager = new DeviceManagerIzluchatel(1720, this);
 QObject::connect(deviceManager, SIGNAL( fireTransitMeasData(int, double , QString ) ), this, SLOT(receiveMeasDataAndTransit (int , double , QString )));
 numCycles=0;
@@ -47,7 +55,12 @@ return 0;
 }
 int PrincipalWindow::getNumTime()
 {
-return ui->spinBoxNumMins->value()*60;
+return ui->radioMins->isChecked()?ui->spinBoxNumMins->value()*60:ui->spinBoxNumMins->value()*60*60;
+
+
+
+
+
 }
 int PrincipalWindow::getNumCycles()
 {
@@ -55,7 +68,8 @@ return ui->spinBoxNumCycles->value();
 }
 void PrincipalWindow::on_spinBoxNumProducts_valueChanged(int arg1)
 {
-if (shellList.size()>arg1) removeShell();
+ if ((shellList.size()>arg1)&&(!shellList.at(arg1)->isTestGoingOn()))     removeShell();
+
 if (shellList.size()<arg1) addShell();
 }
 void PrincipalWindow::on_pushButtonTest_clicked()

@@ -81,7 +81,7 @@ void ProductShell::test()
     if (debugLevel==DEBUG_V)
         {
         writeConsole("Параметры считаны успешно");
- writeConsole (tr ("Число циклов: %1 <br> Время общее: %2 мин <br> Timebreak=%3 msec").\
+ writeConsole (tr ("Число циклов: %1 <br> Время общее: %2 сек <br> Timebreak=%3 msec").\
                arg(QString::number(numCycles))\
                .arg (QString::number (numTime))\
                .arg (QString::number (timeBreak)));
@@ -523,3 +523,10 @@ void ProductShell::criticalError(QString msg) //запускает при кри
 
 }
 
+
+bool ProductShell::isTestGoingOn() //возвращает 1, если производится тестирование
+{
+    return stage>1;
+
+
+}

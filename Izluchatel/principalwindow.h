@@ -40,8 +40,6 @@ public:
     char debugLevel;
 
 
-    int getNumTime();
-    int getNumCycles();
 
 
     bool validateInputData ();
@@ -53,6 +51,10 @@ public:
     void closeEvent(QCloseEvent *ce);
 
     void blockButtons(int state);
+
+
+    int getNumTime();
+    int getNumCycles();
 
     double getThresholdOn();
     double getThresholdOff();
