@@ -166,7 +166,7 @@ counterCycles=0;
 counterTime=0;
 
 ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
-ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 сек/%2").arg(QString::number(counterTime)).arg(QString::number( 0)));
+ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 сек/%2").arg(QString::number(counterTime)).arg(QString::number(0)));
 
 principal->deviceManager->nullLines();
 
@@ -247,7 +247,7 @@ void ProductShell::receiveMeasData (int out, double value, QString type)
     {
         if (out==1)
         {
-        if (result<=thresholdON)
+        if (result>=thresholdON)
     { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не более %2 dB").arg (QString::number(result)).arg(thresholdON), MSG_GOOD); }
      else
     { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не более %2 dB").arg (QString::number(result)).arg(thresholdON), MSG_ERROR); }
@@ -256,7 +256,7 @@ void ProductShell::receiveMeasData (int out, double value, QString type)
 
         if (out==2)
         {
-        if (result>=thresholdOFF)
+        if (result<=thresholdOFF)
     { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не менее %2 dB").arg (QString::number(result)).arg(thresholdOFF), MSG_GOOD); }
      else
     { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее %2 dB").arg (QString::number(result)).arg(thresholdOFF), MSG_ERROR); }
@@ -273,7 +273,7 @@ void ProductShell::receiveMeasData (int out, double value, QString type)
 
         if (out==2)
         {
-        if (result<=thresholdON)
+        if (result>=thresholdON)
     { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не более %2 dB").arg (QString::number(result)).arg(thresholdON), MSG_GOOD); }
      else
     { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее %2 dB").arg (QString::number(result)).arg(thresholdON), MSG_ERROR); }
@@ -282,7 +282,7 @@ void ProductShell::receiveMeasData (int out, double value, QString type)
 
         if (out==1)
         {
-        if (result>=thresholdOFF)
+        if (result<=thresholdOFF)
     { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не менее %2 dB").arg (QString::number(result)).arg(thresholdOFF), MSG_GOOD); }
      else
     { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не менее %2 dB").arg (QString::number(result)).arg(thresholdOFF), MSG_ERROR); }
@@ -437,7 +437,9 @@ void ProductShell::timeout()
         writeConsole( "===Конец цикла===<br>");
         ui->labelCyclesPassedLeft->setText(tr("Циклов прошло/осталось: %1/%2").arg(QString::number(counterCycles)).arg(QString::number(numCycles-counterCycles)));
 
-        ui->labelTimePassedLeft->setText(tr("Коммутаций произошло/осталось: %1 /%2").arg(  counterCycles ).arg(numCycles-counterCycles))  ;
+
+
+        ui->labelTimePassedLeft->setText(tr("Коммутаций произошло/осталось: %1 /%2").arg(counterCycles ).arg(numCycles-counterCycles))  ;
 
 
         if (counterCycles>=numCycles)
