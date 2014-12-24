@@ -456,7 +456,14 @@ void ProductShell::timeout()
 void ProductShell::timeoutTestTimer()
 {
     counterTime++;
-    ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 /%2").arg(  strtimex(counterTime) ).arg(strtimex(numTime-counterTime)))  ;
+    int timediff=numTime-counterTime;
+    if (timediff<0)
+    {
+        timediff=0;
+    }
+
+
+    ui->labelTimePassedLeft->setText(tr("Времени прошло/осталось: %1 /%2").arg(  strtimex(counterTime) ).arg(strtimex(timediff)));
 
 
     //if (counterTime>=numTime) atFinish();

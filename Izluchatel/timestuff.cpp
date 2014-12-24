@@ -17,6 +17,7 @@ QString strtimex (m_time in)
 {
 
 
+
 QString res;
 
 if (in.hours!=0) res.append(QObject::tr(" %1 ч. ").arg(QString::number(in.hours)) );
