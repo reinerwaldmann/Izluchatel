@@ -1,0 +1,750 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Part
+Аппаратурный измерительный комплекс и планирование эксперимента для построения
+ многооткликовых моделей ИС 
+\end_layout
+
+\begin_layout Section
+Постановка задачи
+\end_layout
+
+\begin_layout Paragraph*
+В рамках диссертационной работы разработан программно-аппаратный комплекс
+ для проведения экспериментов по измерению параметров радиоэлектронных компонент
+ов.
+ Комплекс состоит из программной части, запускаемой на совместимом компьютере,
+ и аппаратной части, состоящей из измерительных и задающих условия приборов.
+ Комплекс обеспечивает необходимую в каждом случае точность измерений, сбор
+ и обработку измеренных данных в соответствии с целями экспериментов.
+ Также он имеет в достаточной степени универсальную структуру, что позволяет
+ его использовать для проведения экспериментов с разными радиоэлектронными
+ компонентами.
+ Программная часть комплекса может работать самостоятельно, либо сопрягается
+ со специализированным ПО для оценки параметров многооткликовой модели.
+ 
+\end_layout
+
+\begin_layout Section
+Технические требования к измерительному комплексу
+\end_layout
+
+\begin_layout Subsection*
+Технические требования к программной части
+\end_layout
+
+\begin_layout Enumerate
+Кроссплатформенность между Windows и Linux
+\end_layout
+
+\begin_layout Enumerate
+Возможность интеграции с программным обеспечением для оценки параметров
+ многооткликовой модели
+\end_layout
+
+\begin_layout Enumerate
+Поддержка возможности установки состояния измерительного стенда в соответствии
+ с планом проведения эксперимента (установка входных токов/напряжений и
+ так далее) 
+\end_layout
+
+\begin_layout Enumerate
+Поддержка получения измеренных данных с приборов стенда
+\end_layout
+
+\begin_layout Enumerate
+Высокая степень универсальности - возможность быстро перестраивать состав
+ стенда
+\end_layout
+
+\begin_layout Enumerate
+Обеспечение точности обработки данных с тем, чтобы точность данных на выходе
+ была такой же, как и получена с измерительных приборов, если иное не задано
+ пользователем
+\end_layout
+
+\begin_layout Enumerate
+Обеспечение работы с набором стендового оборудования, заявленным в аппаратной
+ части
+\end_layout
+
+\begin_layout Subsection*
+Технические требования к аппаратной части
+\end_layout
+
+\begin_layout Enumerate
+Требование 
+\end_layout
+
+\begin_layout Section
+Разработка программного комплекса
+\end_layout
+
+\begin_layout Subsection
+Общая концепция комплекса
+\end_layout
+
+\begin_layout Paragraph*
+Комплекс представляет собой клиент-серверное приложение, имеющее в своём
+ составе клиент и сервер.
+ Сервер - это оконное приложение на C++ QT5, обеспечивающее взаимодействие
+ со всем стендовым оборудованием, управляемый конфигурационным файлом стенда.
+ Конфигурационный файл стенда может быть в форме запроса (в этом случае
+ придётся сначала определить порты, на которых находится запрашиваемое стендовое
+ оборудование), может быть в форме готового конфигурационного файла, в котором
+ полностью определены следующие сведения:
+\end_layout
+
+\begin_layout Itemize
+Состав оборудования стенда
+\end_layout
+
+\begin_layout Itemize
+Параметры подключения к каждому устройству (в частности, порты, к которым
+ подключены устройства, их адреса, если они подключены к локальной сети
+ и т.
+ п.)
+\end_layout
+
+\begin_layout Itemize
+Идентификаторы каждого прибора, под которым прибор будет фигурировать в
+ списке устройств и программе обеспечения измерений.
+\end_layout
+
+\begin_layout Paragraph*
+Форма запроса отличается отсутствием некоторых параметров подключения (это
+ актуально для устройств, подключающихся по RS232)
+\end_layout
+
+\begin_layout Paragraph*
+Формат данного файла - xml.
+\end_layout
+
+\begin_layout Paragraph*
+После запуска сервер переходит в режим ожидания запроса от клиента.
+ Порт, на котором сервер ожидает запрос, устанавливается в настройках.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+Клиентская часть представляет собой набор скриптов на Python3x.
+ Часть этих скриптов универсальна, часть специфична для конкретного стенда.
+ В силу гибкости скриптого языка имеется возможность создавать обобщённые
+ библиотеки параметризованных функций для целой группы стендов.
+\end_layout
+
+\begin_layout Paragraph*
+Прозрачность интерфейсов всего программного комплекса, открытость языковых
+ средств и форматов данных гарантирует высокую степень универсальности комплекса
+ и быструю перестройку в случае потребности в решении различных экспериментальны
+х задач.
+\end_layout
+
+\begin_layout Subsection
+Серверный модуль 
+\end_layout
+
+\begin_layout Paragraph*
+Входит в состав модулей долговременного и кратковременного тестирования.
+ Обеспечивает работу с внешними измерительными устройствами, подачу команд
+ и приём измерительных данных.
+ Описание функционала 
+\end_layout
+
+\begin_layout Itemize
+Подача команд на измерительные устройства 
+\end_layout
+
+\begin_layout Itemize
+Приём и интерпретация данных измерений 
+\end_layout
+
+\begin_layout Itemize
+Сохранение текущей конфигурации стенда — информации о подключенных устройствах,
+ в частности, порт подключения и так далее.
+ 
+\end_layout
+
+\begin_layout Itemize
+Полуавтоматическое подключение устройств к стенду 
+\end_layout
+
+\begin_layout Itemize
+Автоматическое подключение устройств по сохранённой информации о подключенных
+ устройствах 
+\end_layout
+
+\begin_layout Itemize
+Вывод информации об устройствах, должных работать в составе стенда согласно
+ текущему сценарию испытаний
+\end_layout
+
+\begin_layout Paragraph*
+Серверный модуль состоит из компонента менеджера устройств, графического
+ интерфейса и внутреннего представления устройств, известных системе.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Внутреннее представление устройств стенда
+\end_layout
+
+\begin_layout Paragraph*
+Внутреннее представление устройств иерархично с выносом общих функций в
+ родительские модули.
+ Данное решение позволяет гибко расширять систему в части поддержки устройств
+ по ходу развития системы.
+ Иерархия устройств привязана к классу менеджера частично через связь «сигнал-сл
+от»: менеджер вызывает функции устройства напрямую, а устройство общается
+ с менеджером посредством сигналов.
+ При поступлении запроса на измерения от субмодуля верхнего уровня к менеджеру
+ последний производит динамическое преобразование типов и перенаправляет
+ его требуемому устройству.
+ Сведения обо всех подключенных устройствах хранятся в хеш-таблице подключенных
+ устройств, где могут быть найдены по идентификатору.
+ Идентификатор в ней тот же, что используется и в файле с описанием требуемых
+ устройств.
+ Примерная иерархия объектов представлена на рисунке 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Иерархия"
+
+\end_inset
+
+ в виде краткой UML-диаграммы классов.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Иерархия"
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../../../phd_text_and_reports/Measurement_System_images_and_materials/DeviceManagerShort.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Интерфейс объекта класса Device:
+\end_layout
+
+\begin_layout Paragraph*
+Сигналы: 
+\end_layout
+
+\begin_layout Itemize
+fireConnected (int id) 
+\begin_inset Newline newline
+\end_inset
+
+Передаёт свой идентификатор и факт подключения к устройству.
+ Активируется тогда, когда устройство было отключено, а затем успешно подключило
+сь по запросу менеджера 
+\end_layout
+
+\begin_layout Itemize
+fireDisconnected (int id) 
+\begin_inset Newline newline
+\end_inset
+
+Передаёт свой идентификатор и факт отключения.
+ Используется в двух вариантах: при работе активируется при внезапной потере
+ связи с устройством, при поиске устройства на заданном порту активируется
+ при отсутствии связи с устройством на данном порту, при автоматизированном
+ восстановлении конфигурации измерительных устройств активируется при отсутствии
+ связи с устройством на данном порту, что трактуется как ошибка в конфигурации
+ 
+\end_layout
+
+\begin_layout Itemize
+fireMeasurementData(int id, double data, QString type) 
+\begin_inset Newline newline
+\end_inset
+
+Передаёт свой идентификатор, измеренные данные и тип измеренных данных.
+ Типом, как правило, является единица измерения величины.
+ 
+\end_layout
+
+\begin_layout Itemize
+msg(int id, QString imsg, int type) 
+\begin_inset Newline newline
+\end_inset
+
+Передаёт свой идентификатор, сообщение и тип сообщения (отладочное, сообщение
+ об ошибке, сообщение об успехе операции)
+\end_layout
+
+\begin_layout Paragraph*
+Публичные функции: 
+\end_layout
+
+\begin_layout Itemize
+virtual int connectx() - подключить устройство 
+\end_layout
+
+\begin_layout Itemize
+virtual int disconnecx() - отключить устройство 
+\end_layout
+
+\begin_layout Itemize
+virtual int ping() - проверить связь с устройством (послать запрос).
+ В случае успеха активируется сигнал connected(int id) 
+\end_layout
+
+\begin_layout Itemize
+virtual int measure(QString type="") - измерить по типу type.
+ По умолчанию вызывается без параметров и запускает измерения по умолчанию.
+ 
+\end_layout
+
+\begin_layout Itemize
+virtual QString getPosition () у устройств, подключаемых по RS232, возвращает
+ имя порта (к примеру, COM1).
+ У устройств LAN возвращает IP адрес.
+ У прочих устройств возвращает данные аналогичного смысла.
+ 
+\end_layout
+
+\begin_layout Itemize
+virtual QDomElement getXMLPOsition (QDomDocument * idoc) — генерирует XML-секцию
+, описывающую параметры подключения устройства.
+ 
+\end_layout
+
+\begin_layout Itemize
+virtual int configureViaXml (QDomElement iel)=0 — конфигурирует объект согласно
+ XML описанию.
+\end_layout
+
+\begin_layout Itemize
+void setID (int iid) - устанавливает идентификатор
+\end_layout
+
+\begin_layout Itemize
+int getID() - возвращает идентификатор
+\end_layout
+
+\begin_layout Itemize
+int getUniqueType() - возваращает уникальный тип устройства
+\end_layout
+
+\begin_layout Itemize
+bool getIsConnected() - возвращает флаг подключения
+\end_layout
+
+\begin_layout Itemize
+QString getName() - возвращает имя устройства
+\end_layout
+
+\begin_layout Itemize
+QString getDescription() - возвращает описание устройства
+\end_layout
+
+\begin_layout Itemize
+QString getVariableComment() - возвращает комментарий к устройству
+\end_layout
+
+\begin_layout Itemize
+void setVariableComment(QString iVariableComment) - устанавливает комментарий
+ к устройству
+\end_layout
+
+\begin_layout Itemize
+int getType() - возвращает тип устройства
+\end_layout
+
+\begin_layout Paragraph*
+Из рисунка 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Иерархия"
+
+\end_inset
+
+ видно, что в данной структуре использовано множественное наследование -
+ конкретные классы устройств наследуются одновременно и по линии Device
+ (основной) и по двум дополнительным линиям - Measurer и Controller.
+ Основной линией определяются главные параметры представления устройств
+ в системе, необходимые для работы с ними, дополнительными - свойства, обусловле
+нные их функциональной принадлежностью, именно, является ли устройство измерител
+ьным или же устанавливающим состояние стенда.
+ Теоретически возможно комбинирование обеих функциональных линий при использован
+ии устройства со множественным назначанием (например, комбинированного стенда
+ с собственной контролирующей аппаратурой).
+\end_layout
+
+\begin_layout Subsubsection
+Менеджер устройств
+\end_layout
+
+\begin_layout Paragraph*
+Модуль менеджера устройств представлен одним классом DeviceManager.
+ Он управляет работой устройств стенда, процессом обмена данными, загрузкой,
+ сохранением и применением файла конфигурации стенда.
+ Краткий перечень выполняемых им функций представлен ниже
+\end_layout
+
+\begin_layout Itemize
+Трансляция команд на измерение от клиентской части 
+\end_layout
+
+\begin_layout Itemize
+Трансляция команд на установку состояния от клиентской части 
+\end_layout
+
+\begin_layout Itemize
+Трансляция сообщений с измеренными данными клиентской части
+\end_layout
+
+\begin_layout Itemize
+Трансляция сообщений об успешной установке состояния клиентской части
+\end_layout
+
+\begin_layout Itemize
+Трансляция сообщений об ошибках клиентской части
+\end_layout
+
+\begin_layout Itemize
+Проверка исправности стенда и готовности к работе
+\end_layout
+
+\begin_layout Itemize
+Сохранение текущей конфигурации стенда во внеший файл
+\end_layout
+
+\begin_layout Itemize
+Загрузкаа конфигурации стенда из внешнего файла
+\end_layout
+
+\begin_layout Itemize
+Загрузка файла запроса на оборудование и обеспечение подключения запрашиваемого
+ оборудования
+\end_layout
+
+\begin_layout Paragraph*
+Конфигурация оборудование может описываться файлом запроса оборудования
+ и файлом конфигурации.
+ Файл запроса описывает состав оборудования в стенде и идентификаторы оборудован
+ия, возможно, приводя известные данные о местоположении устройства (порт
+ подключения, адрес и т.
+ п.).
+ Файл конфигурации содержит в себе все данные, необходимые для работы с
+ устройствами стенда.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset CommandInset label
+LatexCommand label
+name "Файл запроса"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+<?xml version="1.0" encoding="UTF-8"?>
+\end_layout
+
+\begin_layout LyX-Code
+<main_part>
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+<device name="Jerome" varComment="" descr="Ethernet Controller Kernelchip
+ Jerome" id="1" unique_type="201"> </device> 
+\end_layout
+
+\begin_layout LyX-Code
+<device name="APPA305 " varComment="Первый" descr="Мультиметр - ток и напряжение
+" id="11" unique_type="102"> </device> 
+\end_layout
+
+\begin_layout LyX-Code
+<device name="APPA305 " varComment="Второй" descr="Мультиметр - ток и напряжение
+" id="12" unique_type="102"> </device> 
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+</main_part>
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset CommandInset label
+LatexCommand label
+name "Файл конфигурации"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+<?xml version="1.0" encoding="UTF-8"?>
+\end_layout
+
+\begin_layout LyX-Code
+<main_part> 
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+<device name="APPA305 " varComment="Первый" descr="Мультиметр - ток и напряжение
+" id="11" unique_type="102">
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+<portname>COM21</portname> 
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+</device> 
+\end_layout
+
+\begin_layout LyX-Code
+<device name="APPA305 " varComment="Первый" descr="Мультиметр - ток и напряжение
+" id="12" unique_type="102">
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+<portname>COM18</portname> 
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+</device> 
+\end_layout
+
+\begin_layout LyX-Code
+<device name="Jerome" unique_type="201" id="1" descr="Ethernet Controller
+ Kernelchip Jerome" varComment="" type="2"> 
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+<ip>192.168.0.101</ip> 
+\end_layout
+
+\begin_layout LyX-Code
+<port>2424</port> 
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+</device> 
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+</main_part> 
+\end_layout
+
+\begin_layout Paragraph*
+Подобная система необходима для тех устройств, конкретные параметры подключения
+ могут быть определены непосредственно после подготовки стенда к работе,
+ в частности, для устройств, подключаемых через RS232.
+ Вместо того, чтобы вручную задавать порт подключения (что, впрочем, тоже
+ предусмотрено), можно воспользоваться функцией поиска устройств по портам,
+ реализуемой менеджером устройств.
+ После того, как все устройства подключены, система производит сохранение
+ конфигурации на диск в xml-файле.
+ Таким образом, обеспечивается удобная редакция конфигураций, возможность
+ переноса конфигурации с одного компьютера на другой, работа с несколькими
+ стендами и так далее.
+\end_layout
+
+\begin_layout Paragraph*
+Интерфейс системы позволяет контролировать состояние стенда и вручную подключать
+ устройства.
+\end_layout
+
+\begin_layout Subsection
+Клиентский модуль
+\end_layout
+
+\begin_layout Paragraph*
+Клиентский модуль состоит из совокупности скриптов на Python, частично универсал
+ьных для всех вариантов построения стенда, частично специфичных.
+ В силу особенностей языка сравнительно легко создавать библиотеки функций
+ для групп стендов, что минимизирует работу при незначительных изменениях
+ конфигурации оборудования и задач, стоящих перед исследователем.
+ Основной задачей данного модуля является стыковка между высокоуровневой
+ программой оценки параметров модели в части сбора экспериментальных данных
+ (проведения экспериментов по плану и единичных измерений, требуемых, в
+ частности, при реализации механизма последовательного планирования).
+ Следует отметить и систему обработки ошибок, которые могут появиться в
+ процессе измерений (как правило, в случае отказа оборудования).
+\end_layout
+
+\begin_layout Paragraph*
+Состав файлов следующий:
+\end_layout
+
+\begin_layout Itemize
+Файл link.py, универсальный для всех вариантов стендов, обеспечивает низкоуровнев
+ую связь с серверной частью.
+ Обмен данными с серверной частью осуществляется в синхронном режиме, то
+ есть, управляющий скрипт ждёт, пока завершится операция установки состояния
+ и измерения на сервере и от сервера придут данные об успешной установке
+ состояния, измеренные данные, сообщение об ошибке, либо истечёт время,
+ отведённое на ответ.
+\end_layout
+
+\begin_layout Itemize
+Файл top.py, определяющий единственную функцию measure(...), принимающую на
+ вход значения вектора независимых переменных 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+.
+ Именно этот файл импортирует управляющий файл оценки параметров модели.
+ Данная функция возвращает значения вектора 
+\begin_inset Formula $\vec{y}$
+\end_inset
+
+, либо выводит сообщение об ошибке предусмотренным способом и экстренно
+ завершает программу клиентской части.
+ Этот файл импортирует файлы middle_state.py и middle_measure.py, которые
+ описаны ниже.
+ Функция measure(...) обеспечивает установку требуемого состояния стенда вызовами
+ функций этих файло
+\end_layout
+
+\begin_layout Itemize
+Файл middle_measure.py, определяющий процедуры проведения измерений.
+ Его главная функция - makeMeasurements (...), принимающая на вход список строковых
+ параметров, которые надлежит измерить и возвращающая список измеренных
+ значений.
+ Она использует функции, определяющие процедуру проведения отдельных измерений
+ (для большего удобства, через определённую внутри неё или же извне функцию
+ makeMeasurement(...), принимающую на вход строковое обозначение параметра
+ и вызывающую соответствующую этому параметру функцию).
+ Более низкоуровневые функции, определяемые в этом файле - вида measureParameter
+Y1(), где Y1 - измеряемый параметр.
+ 
+\end_layout
+
+\begin_layout Itemize
+Файл middle_state.py, определяющий процедуру установки состояния стенда (значений
+ входных переменных).
+ Её главная функция - makeState(...), принимающая на вход словарь вида имя
+ параметра - значение.
+ Возвращает она кортеж из 0 и пустой строки, в случае успешного установления
+ состояния и кода ошибки и её описания в случае ошибки при установке состояния.
+ Эта функция может использовать дополнительные функции для установки состояния
+ конкретных переменных, возможно, выделяемых в универсальные библиотеки
+ функций.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+Клиентский модуль не снабжается графическим интерфейсом.
+ 
+\end_layout
+
+\end_body
+\end_document
