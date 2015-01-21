@@ -10,7 +10,7 @@ ui(new Ui::PrincipalWindow)
 {
 debugLevel = iDebugLevel;
 ui->setupUi(this);
-ы
+
 ui->spinBoxNumProducts->hide();
 ui->label->hide();
 

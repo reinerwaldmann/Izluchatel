@@ -295,68 +295,6 @@ void ProductShell::receiveMeasData (int out, double value, QString type)
 
 }
 
-void ProductShell::acceptResult(char slot, char out, char errCode, double result )
-{
-    if (errCode>0)
-    {
-        //возможно, вставить расшифровку ошибки
-        writeConsole(tr("Ошибка при измерении №%1").arg(QString::number(errCode)), MSG_ERROR);
-        pause();
-        return;
-    }
-
-
-    if (stage-1==2)
-//1st up 2nd down
-    {
-        if (out==1)
-        {
-        if (result<=8)
-    { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_GOOD); }
-     else
-    { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_ERROR); }
-
-         }
-
-        if (out==2)
-        {
-        if (result>=50)
-    { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_GOOD); }
-     else
-    { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_ERROR); }
-         }
-
-
-
-    }
-
-    if (stage-1==5)
-//1st down 2nd up
-//1 включен 2 отключен
-    {
-
-        if (out==2)
-        {
-        if (result<=8)
-    { writeConsole( tr ("Измерение по выходу 2: в норме, значение потерь %1 dB при норме не более 8dB").arg (QString::number(result)), MSG_GOOD); }
-     else
-    { writeConsole( tr ("Измерение по выходу 2: вне диапазона, значение потерь %1 dB при норме не менее 8dB").arg (QString::number(result)), MSG_ERROR); }
-
-         }
-
-        if (out==1)
-        {
-        if (result>=50)
-    { writeConsole( tr ("Измерение по выходу 1: в норме, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_GOOD); }
-     else
-    { writeConsole( tr ("Измерение по выходу 1: вне диапазона, значение потерь %1 dB при норме не менее 50dB").arg (QString::number(result)), MSG_ERROR); }
-         }
-
-    }
-
-
-}
-
 void ProductShell::timeout()
 {
 

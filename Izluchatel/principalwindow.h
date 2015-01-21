@@ -31,31 +31,19 @@ public:
     ~PrincipalWindow();
     QList <ProductShell * > shellList;
     DeviceManagerIzluchatel * deviceManager;
-
-
     //data from user interface
     int numCycles;
     unsigned long numTime; //IN SECONDS!
-
     char debugLevel;
 
 
-
-
     bool validateInputData ();
-
-
     void addShell();
     void removeShell();
-
     void closeEvent(QCloseEvent *ce);
-
     void blockButtons(int state);
-
-
     int getNumTime();
     int getNumCycles();
-
     double getThresholdOn();
     double getThresholdOff();
 
